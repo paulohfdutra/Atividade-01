@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+body, html {
+	margin: 0;
+	padding: 0;
+}
+body {
+	background: #53a09a;
+	font-family: 'Raleway', sans-serif;
+}
+* {
+    -webkit-transition: linear all 0.3s; /* Safari */
+    transition: linear all 0.3s;
+}
+.forca__content {
+	display: block;
+	width: 80%;
+	height: 90%;
+	padding: calc(1vh + 10px) 10%;
+}
+.forca__content .titulo {
+    color: #FFF;
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.3);
+    font-size: calc(1vw + 50px);
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 100;
+}
+.forca__content .letras {
+	width: 100%;
+	text-align: center;
+    margin-top: 20px;
+}
+.forca__content .letras .letra {
+    padding: 5px;
+    background: #FFF;
+    font-weight: 900;
+    border-radius: 3px;
+    display: inline-block;
+    margin: 3px;
+    min-width: 18px;
+    min-height: 18px;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+    color: #53a09a;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+.forca__content .letras .letra.errada {
+    color: #cc302e;
+}
+.forca__content .palavra {
+	width: 100%;
+	text-align: center;
+}
+.forca__content .palavra .letra {
+    padding: 5px;
+    font-size: 30px;
+    font-weight: 900;
+    display: inline-block;
+    margin: 50px 3px 3px 3px;
+    min-width: 30px;
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.1);
+    color: #FFF;
+    border-bottom: 3px solid #FFF;
+}
+.forca__content .palavra .letra.vazio {
+	color: transparent;
+	text-shadow: none;
+}
+.selecionarLetra [data-letra].letra.jogue {
+    cursor: pointer;
+    opacity: 1;
+}
+.selecionarLetra [data-letra].letra {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+.selecionarLetra [data-letra].letra:hover {
+    background: #eee;
+    color: #999;
+}
+.boneco {
+    width: 150px;
+    margin: 30px auto 3px auto;
+    padding-bottom: 100px;
+    padding-top: 20px;
+    border-left: 3px solid #FFF;
+    min-height: 136px;
+}
+.boneco .forca {
+    border-top: 3px solid #FFF;
+    border-right: 3px solid #FFF;
+    width: 72px;
+    height: 20px;
+    margin-top: -20px;
+    float: left;
+}
+.boneco .cabeca {
+    width: 50px;
+    height: 50px;
+    border: 3px solid #FFF;
+    border-radius: 50px;
+    margin: 0px auto;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+.boneco .bracoEsquerdo {
+    width: 3px;
+    height: 50px;
+    background: #FFF;
+    position: absolute;
+    margin-left: 50%;
+    left: -19px;
+    transform: rotate(45deg);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+.boneco .tronco {
+    width: 3px;
+    height: 80px;
+    background: #FFF;
+    margin: 0px auto;
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+.boneco .bracoDireito {
+    width: 3px;
+    height: 50px;
+    background: #FFF;
+    position: absolute;
+    margin-right: 50%;
+    right: -22px;
+    transform: rotate(-45deg);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+.boneco .pernaEsquerdo {
+    width: 3px;
+    height: 50px;
+    background: #FFF;
+    position: absolute;
+    margin-left: 50%;
+    left: -19px;
+    margin-top: -10px;
+    transform: rotate(45deg);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+.boneco .pernaDireito {
+    width: 3px;
+    height: 50px;
+    background: #FFF;
+    position: absolute;
+    margin-right: 50%;
+    right: -22px;
+    margin-top: -10px;
+    transform: rotate(-45deg);
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
+}
+.colunas {
+    margin: 20px auto 0 auto;
+    position: relative;
+    height: 256px;
+}
+.colunas .coluna {
+    bottom: 0px;
+    position: absolute;
+}
+#ganhou {
+    background: rgba(23, 156, 45, 0.7);
+}
+#perdeu {
+    background: rgba(255, 0, 0, 0.7);
+}
+#ganhou, #perdeu {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #FFF;
+    text-align: center;
+    padding-top: 5%;
+}
+#ganhou h1, #perdeu h1, #ganhou h3, #perdeu h3, #ganhou h5, #perdeu h5 {
+    text-shadow: 2px 2px 0px #29504d;
+    margin: 0px;
+}
+#ganhou h1, #perdeu h1 {
+    font-size: 50px;
+    text-transform: uppercase;
+}
+#ganhou h3, #perdeu h3 {
+    font-size: 30px;
+}
+#ganhou h5, #perdeu h5 {
+    font-size: 20px;
+    font-weight: 100;
+    margin-top: 10px;
+}
+#ganhou h5 span, #perdeu h5 span {
+    font-weight: 900;
+}
+#perdeu .jogarNovamente {
+    text-shadow: 3px 3px 0px #661817;
+    color: #cc302e;
+}
+.jogarNovamente {
+    font-size: 80px;
+    background: #FFF;
+    color: #299e4e;
+    font-weight: 900;
+    display: inline-block;
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+    border: 3px solid #ffffff;
+    text-shadow: 3px 3px 0px #144f27;
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    margin-top: 5%;
+    border: 3px solid #FFF;
+}
+.jogarNovamente:hover {
+    border: 3px solid #144f27;
+}
+#perdeu .jogarNovamente:hover {
+    border: 3px solid #661817;
+}

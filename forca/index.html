@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>ForcaOnline</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+	</head>
+	<body>
+
+		<div class="forca__content">
+			<div class="titulo"><strong>Forca</strong>Online</div>
+			<div class="letras" id="letrasJogadas">
+				<div class="letra">Jogadas:</div>
+			</div>
+
+			<div class="colunas" id="exibeForca" style="max-width: 100%;">
+				<div class="coluna">
+					<div class="boneco">
+						<div class="forca"></div>
+						<div class="cabeca"></div>
+						<div class="bracoEsquerdo"></div>
+						<div class="bracoDireito"></div>
+						<div class="tronco"></div>
+						<div class="pernaEsquerdo"></div>
+						<div class="pernaDireito"></div>
+					</div>
+				</div>
+				<div class="coluna" id="divPalavra">
+					<div class="palavra" id="exibirPalavra">
+						<div class="letra">B</div>
+						<div class="letra">E</div>
+						<div class="letra">M</div>
+						<div class="letra">-</div>
+						<div class="letra">V</div>
+						<div class="letra">I</div>
+						<div class="letra">N</div>
+						<div class="letra">D</div>
+						<div class="letra">O</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="letras">
+				<div class="letra">Letras:</div>
+				<div class="letra" id="letras">7</div>
+				<div class="letra">Tentativas:</div>
+				<div class="letra" id="tentativas">6</div>
+			</div>
+
+			<div class="letras selecionarLetra">
+				<div class="letra">SELECIONE UMA LETRA:</div>
+				<br/>
+				<div class="letra jogue" data-letra="Q">Q</div>
+				<div class="letra jogue" data-letra="W">W</div>
+				<div class="letra jogue" data-letra="E">E</div>
+				<div class="letra jogue" data-letra="R">R</div>
+				<div class="letra jogue" data-letra="T">T</div>
+				<div class="letra jogue" data-letra="Y">Y</div>
+				<div class="letra jogue" data-letra="U">U</div>
+				<div class="letra jogue" data-letra="I">I</div>
+				<div class="letra jogue" data-letra="O">O</div>
+				<div class="letra jogue" data-letra="P">P</div>
+				<br/>
+				<div class="letra jogue" data-letra="A">A</div>
+				<div class="letra jogue" data-letra="S">S</div>
+				<div class="letra jogue" data-letra="D">D</div>
+				<div class="letra jogue" data-letra="F">F</div>
+				<div class="letra jogue" data-letra="G">G</div>
+				<div class="letra jogue" data-letra="H">H</div>
+				<div class="letra jogue" data-letra="J">J</div>
+				<div class="letra jogue" data-letra="K">K</div>
+				<div class="letra jogue" data-letra="L">L</div>
+				<br/>
+				<div class="letra jogue" data-letra="Z">Z</div>
+				<div class="letra jogue" data-letra="X">X</div>
+				<div class="letra jogue" data-letra="C">C</div>
+				<div class="letra jogue" data-letra="V">V</div>
+				<div class="letra jogue" data-letra="B">B</div>
+				<div class="letra jogue" data-letra="N">N</div>
+				<div class="letra jogue" data-letra="M">M</div>
+			</div>
+
+			<div id="ganhou">
+				<h1>Parabéns! 🎉</h1>
+				<h3>Que tal jogar mais um pouco?!</h3>
+				<div class="jogarNovamente">
+					↩
+				</div>
+				<div id="mostrarAcerto">
+				</div>
+				<p style="margin-top: 1%;">
+					Desenvolvido por: <strong>Adrian Lübe</strong> & <strong>Paulo Henrique Dutra</strong> - SI8N - UVV 2018
+				</p>
+			</div>
+
+			<div id="perdeu">
+				<h1>Enforcado! 😞</h1>
+				<h3>Não foi desta vez, que tal tentar outra vez?!</h3>
+				<h5>RESPOSTA: <span id="revelaPalavra">...</span></h5>
+				<div class="jogarNovamente">
+					↩
+				</div>
+				<p style="margin-top: 10%;">
+					Desenvolvido por: <strong>Adrian Lübe</strong> & <strong>Paulo Henrique Dutra</strong> - SI8N - UVV 2018
+				</p>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="js/script.js"></script>
+
+		<script type="text/javascript">
+			window.onload = function() {
+				var TAM_pal = document.getElementById('divPalavra').clientWidth;
+				document.getElementById('exibeForca').style.maxWidth = (TAM_pal + 5) + 'px';
+
+
+				console.log('Tam: ' + (TAM_pal + 5));
+			};
+		</script>
+	</body>
+</html>
