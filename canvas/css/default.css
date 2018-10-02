@@ -1,0 +1,109 @@
+/* css reset http://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/  */
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline
+}
+:focus {
+    outline: 0
+}
+body {
+    line-height: 1;
+    color: black;
+    background: white
+}
+ol, ul {
+    list-style: none
+}
+table {
+    border-collapse: separate;
+    border-spacing: 0
+}
+caption, th, td {
+    text-align: left;
+    font-weight: normal
+}
+blockquote:before, blockquote:after, q:before, q:after {
+    content: ""
+}
+blockquote, q {
+    quotes: "" ""
+}
+body, html {
+    height: 100%;
+    width: 100%;
+}
+/* fonte */
+
+body * {
+    color: #FFF;
+    font-family: monospace;
+    text-shadow: 0 0 10px #9ceef9;
+}
+strong {
+    font-weight: bold;
+}
+canvas {
+	float: left;
+    width: 100%;
+    height: 100%;
+}
+div.legenda h1 {
+    font-weight: bold;
+}
+div#box_score {
+    visibility: hidden;
+    margin: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    color: #FFF;
+    font-size: 20px;
+    z-index: 2;
+}
+
+div#box_score h1 {
+    font-size: 50px;
+}
+
+.legenda {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: #FFF;
+	margin: 10px;
+	font-size: 20px;
+	z-index: 2;
+}
+
+#iniciarjogo {
+    width: 100%;
+    height: 100%;
+    background: rgba(33, 150, 243, 0.5);
+    font-size: 40px;
+    text-align: center;
+    padding-top: 10%;
+    position: fixed;
+    z-index: 1;
+    cursor: pointer;
+}
+
+#pause {
+	width: 100%;
+    height: 100%;
+    background: rgba(182, 33, 243, 0.5);
+    font-size: 40px;
+    text-align: center;
+    padding-top: 10%;
+    position: fixed;
+    z-index: 1;
+    cursor: pointer;
+    visibility: hidden;
+}
