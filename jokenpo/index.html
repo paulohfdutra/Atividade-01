@@ -1,0 +1,262 @@
+<html>
+<head>
+	<style>
+		#main {
+			width:390px;
+			margin:0 auto;
+			text-align:center;
+			font-family: Comic Sans, Comic Sans MS, cursive;
+			color:#555;
+			font-size:13px;
+		}
+
+		select, input {
+			padding:5px;
+			font-size:17px;
+			margin:5px;
+		}
+
+		input.placar {
+			width:30px;
+			text-align:center;
+		}
+
+		table {
+			width:370px;
+			border:0;
+		}
+
+		table th, table td {
+			padding:3px;
+		}
+
+		table th {
+			background-color:#333;
+			color:#fff;    
+		}
+
+		table td {
+			text-align:center;
+		}
+
+		#cmp-vencedor {
+			background-color:#fdedb2;
+		}
+	</style>
+	</head>
+	<body>
+		<div id="main">
+
+		<img src="title.jpg" style="width:100%">
+
+		<label for="placar-jogador" id="label-jogador">Jogador</label>
+		<input type="text" id="placar-jogador" class="placar" readonly="readonly" value="0" />
+		X 
+    
+		<input type="text" id="placar-computador" class="placar" readonly="readonly" value="0" />
+		<label for="placar-computador">Computador</label>
+
+		<br /><br />
+
+		<select id="opcaojogador">
+			<option value=""> -- Escolha a opção -- </option>
+			<option value="pedra"> Pedra </option>
+			<option value="papel"> Papel </option>
+			<option value="tesoura"> Tesoura </option>
+		</select>
+
+		<input type="button" value="Jogar!" id="btn-action" />
+
+		<br /><br /><br />
+
+		<table>
+			<tr>
+				<th id="th-jogador">Jogador</th>
+				<td>&nbsp;</td>
+				<th>Computador</th>
+			</tr>
+			<tr>
+				<td id="cmp-jogador">--</td>
+				<td> X </td>
+				<td id="cmp-computador">--</td>
+			</tr>
+			<tr>
+				<th>Vencedor: </th>
+				<td>&nbsp;</td>
+				<td id="cmp-vencedor">--</td>
+			</tr>        
+		</table>
+		</div>
+	</body>
+<script>
+		var JOQUEMPO = (function() {
+
+		var 
+			nomeJogador, 
+			escolhaJogador, 
+			escolhaComputador, 
+			vencedor, 
+			pontosJogador, 
+			pontosComputador;        
+
+		var setNomeDoJogador = function (nome) {
+			nomeJogador = nome;
+		};
+		
+		var getNomeDoJogador = function () {
+			return nomeJogador;
+		};
+
+		var setEscolhaJogador = function (escolha) {
+			escolhaJogador = escolha;
+		};
+
+		var getEscolhaJogador = function () {
+			return escolhaJogador;
+		};
+
+		var setEscolhaComputador = function (escolha) {
+			escolhaComputador = escolha;
+		};
+
+		var getEscolhaComputador = function () {
+
+			var escolhaComputador = Math.round(Math.random() * 2);
+			switch (escolhaComputador) {
+				case 0:
+					escolhaComputador = 'pedra';
+					break;
+				case 1:
+					escolhaComputador = 'papel';
+					break
+				case 2:
+					escolhaComputador = 'tesoura';
+					break;
+			} 
+			setEscolhaComputador(escolhaComputador);
+			return escolhaComputador;
+
+		};
+
+		var getVencedor = function () {
+
+			if (escolhaJogador == 'pedra') {
+
+				if (escolhaComputador == 'pedra') {
+					vencedor = 'Empatou!!!<br>😤';
+				} else if (escolhaComputador == 'papel') {
+					vencedor = 'Você perdeu!!!<br>😭';
+				} else if (escolhaComputador == 'tesoura') {
+					vencedor = 'Você ganhou!!!<br>😁';
+				}
+
+			} else if (escolhaJogador == 'papel') {
+
+				if (escolhaComputador == 'pedra') {
+					vencedor = 'Você ganhou!!!<br>😁';
+				} else if (escolhaComputador == 'papel') {
+					vencedor = 'Empatou!!!<br>😤';
+				} else if (escolhaComputador == 'tesoura') {
+					vencedor = 'Você perdeu!!!<br>😭';
+				}
+
+			} else if (escolhaJogador == 'tesoura') {
+
+				if (escolhaComputador == 'pedra') {
+					vencedor = 'Você perdeu!!!<br>😭';
+				} else if (escolhaComputador == 'papel') {
+					vencedor = 'Você ganhou!!!<br>😁';
+				} else if (escolhaComputador == 'tesoura') {
+					vencedor = 'Empatou!!!<br>😤';
+				}
+
+			} 
+
+			if (vencedor == 'Você ganhou!!!<br>😁') {
+				if (getPontosJogador() != null) {
+					setPontosJogador(getPontosJogador() + 1);	
+				} else {
+					setPontosJogador(1);
+				}            
+			} else if (vencedor == 'Você perdeu!!!<br>😭') {
+				if (getPontosComputador() != null) {
+					setPontosComputador(getPontosComputador() + 1);	
+				} else {
+					setPontosComputador(1);
+				} 
+			}         
+
+			return vencedor;
+
+		};
+		
+		var getPontosComputador = function () {
+			return pontosComputador;
+		};
+		
+		var setPontosComputador = function  (pontos) {
+			pontosComputador = pontos;
+		};
+		
+		var getPontosJogador = function  () {
+			return pontosJogador;
+		};
+		
+		var setPontosJogador = function  (pontos) {
+			pontosJogador = pontos;
+		};
+
+		return {
+			setNomeDoJogador : setNomeDoJogador,
+			getNomeDoJogador : getNomeDoJogador,
+			setEscolhaJogador : setEscolhaJogador,
+			getEscolhaComputador : getEscolhaComputador,
+			getVencedor : getVencedor,
+			setPontosComputador: setPontosComputador,
+			setPontosJogador: setPontosJogador,
+			getPontosComputador: getPontosComputador,
+			getPontosJogador: getPontosJogador
+		};
+
+	})();
+
+	function capitalizeFirstLetter(string) {
+		return string.charAt(0).toUpperCase() + string.slice(1);
+	}
+
+	(function(){
+
+		var nomeJogador = prompt("Olá jogador, por favor digite aqui seu nome!");
+
+			if (nomeJogador == '' || nomeJogador == null) {
+				nomeJogador = 'Jogador';
+			}
+
+			JOQUEMPO.setNomeDoJogador(nomeJogador);
+			JOQUEMPO.setPontosComputador(0);
+			JOQUEMPO.setPontosJogador(0);
+
+			document.getElementById("btn-action").onclick = function () {
+
+				var escolhaJogador = document.getElementById("opcaojogador").value;
+				
+				if (escolhaJogador == '') {
+					alert('Por gentileza escolha uma opção válida: Pedra, Papel ou Tesoura!');
+					return false;
+				}
+				
+				document.getElementById("cmp-jogador").innerHTML = capitalizeFirstLetter(escolhaJogador);
+				JOQUEMPO.setEscolhaJogador(escolhaJogador);
+				document.getElementById("cmp-computador").innerHTML = capitalizeFirstLetter(JOQUEMPO.getEscolhaComputador());
+				document.getElementById("cmp-vencedor").innerHTML = capitalizeFirstLetter(JOQUEMPO.getVencedor());
+				document.getElementById("placar-jogador").value = JOQUEMPO.getPontosJogador();
+				document.getElementById("placar-computador").value =  JOQUEMPO.getPontosComputador();
+				document.getElementById("label-jogador").innerHTML =  JOQUEMPO.getNomeDoJogador();
+				document.getElementById("th-jogador").innerHTML =  JOQUEMPO.getNomeDoJogador();
+			
+			};
+			
+		})();
+
+	</script>
+</html>
