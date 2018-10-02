@@ -1,0 +1,63 @@
+html, body {
+	height: 100%;
+	padding: 0;
+	margin: 0;
+    font-family: 'K2D', sans-serif;
+}
+#mapid {
+	height: 100%;
+}
+.menu {
+    width: auto;
+    height: 50px;
+    border-radius: 0 0 10px 10px;
+    position: fixed;
+    top: 0;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 1000;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+    left: 55px;
+}
+
+.menu ul {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+
+.menu ul li a {
+    max-height: 100%;
+    padding: 13px 15px;
+    display: block;
+    font-size: 18px;
+    text-decoration: none;
+    color: #666;
+}
+
+.menu ul li {
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.menu ul li:hover a {
+    color: #333;
+}
+
+.menu ul li:first-child {
+    border-radius: 0 0 0 10px;
+}
+
+.menu ul li:last-last {
+    border-radius: 0 0 10px 0;
+}
+
+.menu ul li:hover {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.clicavel {
+    cursor: pointer;
+}

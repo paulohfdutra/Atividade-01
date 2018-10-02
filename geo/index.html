@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>Atividade 4 - Geolocalização</title>
+	<link href="https://fonts.googleapis.com/css?family=K2D" rel="stylesheet">
+ 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+ 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+ 	<link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+	<div class="menu">
+		<ul>
+			<li>
+				<a class="clicavel" onclick="mymap.locate({setView: true, maxZoom: 18});"><i class="fa fa-map-marker-alt"></i> Localizar</a>
+			</li>
+			<li>
+				<a class="clicavel" onclick="donwloadPontos()"><i class="fa fa-download"></i> Baixar cordenadas</a>
+			</li>
+			<li>
+				<a class="clicavel" onclick="limparmapa()"><i class="fa fa-trash"></i> Limpar ações</a>
+			</li>
+		</ul>
+	</div>
+	<div id="mapid"></div>
+
+	<!-- Make sure you put this AFTER Leaflet's CSS -->
+	<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
+
+	<script type="text/javascript">
+		var latlngs = Array();
+		var mymap = L.map('mapid').setView([-20.3538788, -40.300014], 15);
+		initmap();
+
+		function onMapClick(e) {
+		   var mark = L.marker([ e.latlng.lat, e.latlng.lng],{draggable: true}).addTo(mymap);
+		   latlngs.push(mark.getLatLng());
+
+		   if(latlngs.length >= 2){
+		      desenharLinhas()
+		   }
+		}
+
+		function desenharLinhas() {
+		   L.polyline(latlngs, {color: 'blue'}).addTo(mymap);
+		}
+
+		mymap.on('click', onMapClick);
+
+		function onLocationFound(e) {
+		    var radius = e.accuracy / 2;
+
+		    L.circle(e.latlng, radius).addTo(mymap).bindPopup("<center><strong>Você está aqui.</strong><br/>Precisão de " + radius + " metros!</center>").openPopup();
+		}
+
+		function onLocationError(e) {
+		    alert(e.message);
+		}
+
+		mymap.on('locationerror', onLocationError);
+		mymap.on('locationfound', onLocationFound);
+
+		function donwloadPontos(){
+		   if(latlngs.length >= 1){
+		      var pontos = ""
+		      latlngs.forEach(element => {
+		         pontos += "["+element.lat+","+element.lng+"],"+String.fromCharCode(13)+String.fromCharCode(10)
+		      });
+		      var a = document.createElement("a");
+		      document.body.appendChild(a);
+		      a.style = "display: none";
+
+		      var json = JSON.stringify(pontos),
+		         blob = new Blob([pontos], {type: "text/plain;charset=utf-8"}),
+		         url = window.URL.createObjectURL(blob);
+		      a.href = url;
+		      a.download = "pontos.txt";
+		      a.click();
+		      window.URL.revokeObjectURL(url);
+		   }else{
+		      alert("Marque ao menos 1 ponto no mapa")
+		   }
+		}
+
+		function limparmapa() {
+			mymap.eachLayer(function(layer){
+				mymap.removeLayer(layer)
+			});
+			latlngs = Array()
+
+			initmap();
+		}
+
+		function initmap() {
+			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+			    attribution: 'Atividade 4 - Adrian Lübe & Paulo H. Dutra - SI8N',
+			    maxZoom: 18,
+			    id: 'mapbox.streets',
+			    accessToken: 'pk.eyJ1IjoiYWRyaWFubHViZSIsImEiOiJjam1tbTU3ejUwa2VnM2twa3ZpbmloZXdoIn0.5ooBCog0Fk51cKQEBSBV9g'
+			}).addTo(mymap);
+		}
+	</script>
+</body>
+</html>
